@@ -19,6 +19,7 @@
 #include <cstddef>
 #include <vector>
 #include <cmath>
+#include <util.h>
 // ---------------------------------------------------------
 //  Forwards and typedefs
 // ---------------------------------------------------------

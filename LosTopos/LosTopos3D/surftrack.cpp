@@ -122,6 +122,7 @@ m_merger( *this ),
 m_pincher( *this ),
 m_cutter( *this ),
 m_t1transition( *this, initial_parameters.m_velocity_field_callback, initial_parameters.m_remesh_boundaries ),
+m_cacheoptimizer(*this),
 m_t1_transition_enabled( initial_parameters.m_t1_transition_enabled ),
 m_improve_collision_epsilon( initial_parameters.m_improve_collision_epsilon ),
 m_max_volume_change( UNINITIALIZED_DOUBLE ),
@@ -517,6 +518,19 @@ void SurfTrack::defrag_mesh( )
     
 }
 
+// ---------------------------------------------------------
+///
+/// Sort triangles to minimize cache miss
+///
+// ---------------------------------------------------------
+
+void SurfTrack::optimizeCache() {
+  m_cacheoptimizer.sortTriangles();
+  if (m_collision_safety)
+  {
+    rebuild_continuous_broad_phase();
+  }
+}
 
 // --------------------------------------------------------
 ///

@@ -20,6 +20,7 @@ include_directories (${GLUT_INCLUDE_DIR})
 # add_library(LosTopos SHARED ${Headers} ${Sources})
 add_library(LosTopos STATIC ${Headers} ${Sources})
 target_link_libraries (LosTopos 
+${OPENCCL_LIBRARIES}
 ${DEFAULT_LIBRARIES} ${OPENGL_LIBRARIES} ${GLUT_glut_LIBRARY}
 opengl32
 "C:/Users/fuiri/Desktop/freeglut/lib/freeglut.lib"

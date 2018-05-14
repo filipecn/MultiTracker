@@ -40,6 +40,9 @@ add_definitions (-DHAVE_LAPACK)
 set (LAPACK_LIBRARIES "C:/Users/fuiri/Desktop/liblapack.lib")
 set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES} ${LAPACK_LIBRARIES})
 
+set (OPENCCL_LIBRARIES "C:/Users/fuiri/Documents/Projects/OpenCCL/Lib/metis.lib" "C:/Users/fuiri/Documents/Projects/OpenCCL/Lib/OpenCCL.lib")
+include_directories("C:/Users/fuiri/Documents/Projects/OpenCCL/include")
+
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LosTopos/LosTopos3D)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LosTopos/common)
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LosTopos/common/newsparse)

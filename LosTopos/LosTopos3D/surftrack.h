@@ -21,6 +21,7 @@
 #include <meshcutter.h>
 #include <t1transition.h>
 #include <meshsnapper.h>
+#include <cacheoptimizer.h>
 
 // ---------------------------------------------------------
 //  Forwards and typedefs
@@ -498,6 +499,10 @@ public:
     ///
     void defrag_mesh();
 
+    /// Sort triangles to minimize cache misses
+    ///
+    void optimizeCache();
+
     /// Check for labels with -1 as their value, or the same label on both sides.
     /// 
     void assert_no_bad_labels();
@@ -579,6 +584,10 @@ public:
     /// T1 transition operation object
     ///
     T1Transition m_t1transition;
+
+    /// Mesh triangle sorter
+    ///
+    CacheOptimizer m_cacheoptimizer;
     
     /// An option to indicate whether T1 transition operations are enabled
     ///

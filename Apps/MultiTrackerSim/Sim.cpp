@@ -100,6 +100,8 @@ void Sim::step()
     // defrag the mesh in the end, to ensure the next step starts with a clean mesh
     m_st->defrag_mesh();
     
+    // sort mesh triangles to maximize cache hit count
+    m_st->optimizeCache();
     
     // advance time
     m_frameid++;

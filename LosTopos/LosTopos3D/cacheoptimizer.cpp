@@ -39,17 +39,17 @@ namespace LosTopos {
     graphSize++;
     // compute new vertex order
     OpenCCL::CLayoutGraph graph(graphSize);
-    for (auto triangle : triangles) {
-      graph.AddEdge(triangle[0], triangle[1]);
-      graph.AddEdge(triangle[1], triangle[2]);
-      graph.AddEdge(triangle[2], triangle[0]);
+    for (size_t i = 0; i < triangles.size(); i++) {
+      if (!m_surf.m_mesh.triangle_is_deleted(i)) {
+        graph.AddEdge(triangles[i][0], triangles[i][1]);
+        graph.AddEdge(triangles[i][1], triangles[i][2]);
+        graph.AddEdge(triangles[i][2], triangles[i][0]);
+      }
     }
     std::vector<int> order(graphSize, 0), newVertexIndex(graphSize, 0);
     graph.ComputeOrdering(&order[0]);
     std::cerr << "GRAPH SIZE " << order.size() << std::endl;
-    //for (auto o : order)
-    //  std::cerr << o << " ";
-    //std::cerr << std::endl;
+    std::cerr << m_surf.m_velocities.size() << " " << m_surf.pm_positions.size() << std::endl;
     // swap vertices positions
     // Order [i] has an original vertex id in ith position in the computed vertex ordering.
     std::vector<Vec3d> newPositions(order.size()), newNewPositions(order.size()), newMasses(order.size()), newVelocities(order.size());
@@ -57,26 +57,25 @@ namespace LosTopos {
       newPositions[i] = m_surf.pm_positions[order[i]];
       newNewPositions[i] = m_surf.pm_newpositions[order[i]];
       newMasses[i] = m_surf.m_masses[order[i]];
-      newVelocities[i] = m_surf.m_velocities[order[i]];
+      //newVelocities[i] = m_surf.m_velocities[order[i]];
       newVertexIndex[order[i]] = i;
     }
+    assert(newPositions.size() == newNewPositions.size());
+    m_surf.m_mesh.set_num_vertices(newPositions.size());
     m_surf.set_all_positions(newPositions);
     m_surf.set_all_newpositions(newNewPositions);
-    m_surf.set_all_remesh_velocities(newVelocities);
+    //m_surf.set_all_remesh_velocities(newVelocities);
     for (size_t i = 0; i < order.size(); i++) 
       m_surf.m_masses[i] = newMasses[i];
     // now renumber triangle vertices
     std::vector<Vec3st> newTriangles(triangles.size());
     std::vector<Vec2i> newLabels(triangles.size());
     for (size_t i = 0; i < triangles.size(); i++) {
-      //std::cerr << "(" << triangles[i][0] << ", " << triangles[i][1] << ", " << triangles[i][2] << ") -> ";
-      newLabels[i] = labels[i];
-      newTriangles[i] = 
-       //m_surf.renumber_triangle(i, 
-          Vec3st(newVertexIndex[triangles[i][0]], 
-            newVertexIndex[triangles[i][1]], 
+        newLabels[i] = labels[i];
+        newTriangles[i] =
+          Vec3st(newVertexIndex[triangles[i][0]],
+            newVertexIndex[triangles[i][1]],
             newVertexIndex[triangles[i][2]]);
-       //std::cerr << "(" << newTriangles[i][0] << ", " << newTriangles[i][1] << ", " << newTriangles[i][2] << ")\n";
 
     }
    m_surf.m_mesh.replace_all_triangles(newTriangles, newLabels);

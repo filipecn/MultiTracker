@@ -525,6 +525,10 @@ void SurfTrack::defrag_mesh( )
 // ---------------------------------------------------------
 
 void SurfTrack::optimizeCache() {
+  static int i = -1;
+  i++;
+  if (i % 20 != 0)
+    return;
   m_cacheoptimizer.sortTriangles();
   if (m_collision_safety)
   {

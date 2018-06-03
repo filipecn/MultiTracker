@@ -61,6 +61,7 @@ namespace LosTopos {
     /// The mesh this object operates on
     /// 
     SurfTrack& m_surf;
+    std::vector<int> order, newVertexIndex;
   };
 
 }

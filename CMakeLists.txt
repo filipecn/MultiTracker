@@ -27,10 +27,12 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
 endif (CMAKE_BUILD_TYPE MATCHES Debug)
 
 # Eigen library is required
-find_package (Eigen REQUIRED)
+# find_package (Eigen REQUIRED)
+set(EIGEN_INCLUDE_DIR "C:/Users/fuiri/Desktop/EIGEN3/eigen3")
 include_directories (${EIGEN_INCLUDE_DIR})
 
-find_package (BLAS REQUIRED)
+# find_package (BLAS REQUIRED)
+set (BLAS_LIBRARIES "C:/Users/fuiri/Desktop/libblas.lib")
 set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES} ${BLAS_LIBRARIES})
 
 find_package (LAPACK REQUIRED)

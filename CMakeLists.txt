@@ -35,8 +35,9 @@ include_directories (${EIGEN_INCLUDE_DIR})
 set (BLAS_LIBRARIES "C:/Users/fuiri/Desktop/libblas.lib")
 set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES} ${BLAS_LIBRARIES})
 
-find_package (LAPACK REQUIRED)
+#  find_package (LAPACK REQUIRED)
 add_definitions (-DHAVE_LAPACK)
+set (LAPACK_LIBRARIES "C:/Users/fuiri/Desktop/liblapack.lib")
 set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES} ${LAPACK_LIBRARIES})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LosTopos/LosTopos3D)

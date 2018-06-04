@@ -20,7 +20,7 @@
 //#include <rootparity2d.h>
 #include <rootparitycollisiontest.h>
 #include <tunicate.h>
-// #include <bsc.h>
+#include <bsc.h>
 
 namespace LosTopos {
 
@@ -262,6 +262,7 @@ bool point_triangle_collision(const Vec3d& x0, const Vec3d& xnew0, size_t /*inde
                               const Vec3d& x2, const Vec3d& xnew2, size_t /*index2*/,
                               const Vec3d& x3, const Vec3d& xnew3, size_t /*index3*/ )
 {   
+    rootparity::Intersect_VF_robust(x0, x1, x2, x3, xnew0, xnew1, xnew2, xnew3);
     rootparity::RootParityCollisionTest test( x0, x1, x2, x3, xnew0, xnew1, xnew2, xnew3, false );
     bool rayhex_result = test.run_test();
     return rayhex_result;

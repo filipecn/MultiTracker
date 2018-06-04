@@ -56,7 +56,7 @@ EMail:              geom@cs.unc.edu; tang_m@zju.edu.cn
 \**************************************************************************/
 
 #pragma warning(disable: 4996)
-#include <rootparitycollisiontest.h>
+#include <tunicate/rootparitycollisiontest.h>
 #include <cstdlib>
 
 namespace LosTopos {
@@ -725,7 +725,7 @@ namespace LosTopos {
         make_vector(d1, id1);
         int ret = Intersect_robust(ia0, ib0, ic0, id0, ia1, ib1, ic1, id1, false);
 
-        if (ret < 0) {
+        /*if (ret < 0) {
           Vec3e ea0, ea1, eb0, eb1, ec0, ec1, ed0, ed1;
           make_vector(a0, ea0);
           make_vector(b0, eb0);
@@ -736,7 +736,7 @@ namespace LosTopos {
           make_vector(c1, ec1);
           make_vector(d1, ed1);
           int ret = Intersect_robust(ea0, eb0, ec0, ed0, ea1, eb1, ec1, ed1, false);
-        }
+        }*/
 
         return ret;
       }
@@ -761,7 +761,7 @@ namespace LosTopos {
         make_vector(d1, id1);
         int ret = Intersect_robust(ia0, ib0, ic0, id0, ia1, ib1, ic1, id1, true);
 
-        if (ret < 0) {
+        /*if (ret < 0) {
           Vec3e ea0, ea1, eb0, eb1, ec0, ec1, ed0, ed1;
           make_vector(a0, ea0);
           make_vector(b0, eb0);
@@ -772,7 +772,7 @@ namespace LosTopos {
           make_vector(c1, ec1);
           make_vector(d1, ed1);
           int ret = Intersect_robust(ea0, eb0, ec0, ed0, ea1, eb1, ec1, ed1, true);
-        }
+        }*/
 
         return ret;
       }

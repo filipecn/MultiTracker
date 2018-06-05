@@ -28,16 +28,17 @@ endif (CMAKE_BUILD_TYPE MATCHES Debug)
 
 # Eigen library is required
 # find_package (Eigen REQUIRED)
-set(EIGEN_INCLUDE_DIR "C:/Users/fuiri/Desktop/EIGEN3/eigen3")
+# set(EIGEN_INCLUDE_DIR "C:/Users/fuiri/Desktop/EIGEN3/eigen3")
+set(EIGEN_INCLUDE_DIR "/usr/include/eigen3")
 include_directories (${EIGEN_INCLUDE_DIR})
 
-# find_package (BLAS REQUIRED)
-set (BLAS_LIBRARIES "C:/Users/fuiri/Desktop/libblas.lib")
+find_package (BLAS REQUIRED)
+# set (BLAS_LIBRARIES "C:/Users/fuiri/Desktop/libblas.lib")
 set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES} ${BLAS_LIBRARIES})
 
-#  find_package (LAPACK REQUIRED)
+find_package (LAPACK REQUIRED)
 add_definitions (-DHAVE_LAPACK)
-set (LAPACK_LIBRARIES "C:/Users/fuiri/Desktop/liblapack.lib")
+# set (LAPACK_LIBRARIES "C:/Users/fuiri/Desktop/liblapack.lib")
 set (DEFAULT_LIBRARIES ${DEFAULT_LIBRARIES} ${LAPACK_LIBRARIES})
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/LosTopos/LosTopos3D)

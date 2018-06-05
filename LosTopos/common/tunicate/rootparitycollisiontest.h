@@ -19,7 +19,7 @@ namespace rootparity
     typedef Vec<3,expansion> Vec3e;
     typedef Vec<3,bool> Vec3b;
     typedef Vec<4,bool> Vec4b;
-    
+
     /// --------------------------------------------------------
     ///
     /// class RootParityCollisionTest: Encapsulates functions for continuous collision detection using the "root-parity" approach.
